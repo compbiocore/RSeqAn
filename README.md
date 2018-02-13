@@ -1,0 +1,2 @@
+# RseqAn
+SeqAn for R
