@@ -1,0 +1,10 @@
+Package: RSeqAn
+Type: Package
+Title: R SeqAn
+Version: 0.1
+Date: 2018-02-13
+Author: August Guang
+Maintainer: August Guang <august_guang@brown.edu>
+Description: SeqAn for R
+License: BSL-1.0
+BugReports: https://github.com/aguang/RSeqAn/issues
