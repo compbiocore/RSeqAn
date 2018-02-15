@@ -7,6 +7,5 @@ Author: August Guang
 Maintainer: August Guang <august_guang@brown.edu>
 Description: SeqAn for R
 License: BSL-1.0
-LinkingTo: Rcpp, BH
 BugReports: https://github.com/compbiocore/RSeqAn/issues
 RoxygenNote: 6.0.1
