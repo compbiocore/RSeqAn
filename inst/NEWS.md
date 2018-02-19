@@ -1,0 +1,3 @@
+# RSeqAn 0.99.0
+
+ * First release, only headers files have been included.

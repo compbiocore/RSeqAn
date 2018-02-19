@@ -4,30 +4,50 @@ author: "August Guang"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+    %\VignetteIndexEntry{Vignette Title}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+    collapse = TRUE,
+    comment = "#>"
 )
 Sys.setenv("PKG_CXXFLAGS"="-std=c++14")
 ```
 
 ## Introduction
 
-The reason RSeqAn was created was to allow for easy integration of the SeqAn biological sequence analysis C++ library into R packages. While R is an excellent language for many other applications, it is just not fast enough for reading and writing files on the scale of next generation sequencing output. This is where a well-developed and mature library like SeqAn comes in.
+The reason RSeqAn was created was to allow for easy integration of the
+SeqAn biological sequence analysis C++ library into R packages. While R
+is an excellent language for many other applications, it is just not
+fast enough for reading and writing files on the scale of next
+generation sequencing output. This is where a well-developed and mature
+library like SeqAn comes in.
 
-This vignette only goes through the first example in the [A First Example](http://seqan.readthedocs.io/en/master/Tutorial/GettingStarted/AFirstExample.html#tutorial-getting-started-first-steps-in-seqan) section as found in the [Getting Started](http://seqan.readthedocs.io/en/master/Tutorial/GettingStarted/) section of the [SeqAn](http://seqan.readthedocs.io/en/master/index.html) docs. We have modified the function slightly to make it work here in R, and will go through how and why we did so. The purpose of using this example is to help the user get an idea of how to go between SeqAn and R. To take full advantage of SeqAn though the user will need to read through SeqAn's documentation.
+This vignette only goes through the first example in the
+[A First Example](http://seqan.readthedocs.io/en/master/Tutorial/GettingStarted/AFirstExample.html#tutorial-getting-started-first-steps-in-seqan)
+section as found in the
+[Getting Started](http://seqan.readthedocs.io/en/master/Tutorial/GettingStarted/)
+section of the [SeqAn](http://seqan.readthedocs.io/en/master/index.html)
+docs. We have modified the function slightly to make it work here
+in R, and will go through how and why we did so. The purpose of using
+this example is to help the user get an idea of how to go between
+SeqAn and R. To take full advantage of SeqAn though the user will need
+to read through SeqAn's documentation.
 
-Besides that, the user is expected to have some experience with both C++ and Rcpp, although it not need be extensive. After all, that is what RSeqAn is for. 
+Besides that, the user is expected to have some experience with both
+C++ and Rcpp, although it not need be extensive. After all, that is
+what RSeqAn is for. 
 
 ## Template functions and template classes
 
-The simple example in `pattern_search` does, as you might expect, a pattern search of a short query sequence (pattern) in a long subject sequence (text). It returns a score value for each position of the database sequence as the sum of matching characters between the pattern and the text.
+The simple example in `pattern_search` does, as you might expect, a
+pattern search of a short query sequence (pattern) in a long subject
+sequence. It returns an integer score value for each position of the
+database sequence (text) as the sum of matching characters between the
+pattern string and the subject substring of the database sequence.
 
 ```{r pattern_search, engine='Rcpp'}
 // [[Rcpp::depends(RSeqAn)]]
@@ -42,37 +62,42 @@ using namespace std;
 
 // [[Rcpp::export]]
 IntegerVector pattern_search(std::string t, std::string p) {
-  
-  seqan::String<char> text = t;
-  seqan::String<char> pattern = p;
-
-  String<int> score;
-  resize(score, length(text) - length(pattern) + 1);
-  
-  // Computation of the similarities
-  // Iteration over the text (outer loop)
-  for (unsigned i = 0; i < length(text) - length(pattern) + 1; ++i)
-  {
-    int localScore = 0;
-    // Iteration over the pattern for character comparison
-    for (unsigned j = 0; j < length(pattern); ++j)
+    
+    seqan::String<char> text = t;
+    seqan::String<char> pattern = p;
+    
+    String<int> score;
+    resize(score, length(text) - length(pattern) + 1);
+    
+    // Computation of the similarities
+    // Iteration over the text (outer loop)
+    for (unsigned i = 0; i < length(text) - length(pattern) + 1; ++i)
     {
-      if (text[i + j] == pattern[j])
-        ++localScore;
+        int localScore = 0;
+        // Iteration over the pattern for character comparison
+        for (unsigned j = 0; j < length(pattern); ++j)
+        {
+            if (text[i + j] == pattern[j])
+                ++localScore;
+        }
+        score[i] = localScore;
     }
-    score[i] = localScore;
-  }
-  
-  // Returning the result
-  IntegerVector s(length(score));
-  for (unsigned i = 0; i < length(score); ++i)
-    s[i] = score[i];
-  
-  return s;
+    
+    // Returning the result
+    IntegerVector s(length(score));
+    for (unsigned i = 0; i < length(score); ++i)
+        s[i] = score[i];
+    
+    return s;
 }
 ```
 
-The results are shown in `ps_r`. We see that the first position has a score of 1, because the `i` in the pattern matches the 1 `i` in `is`.
+The results are shown below. We see that the maximum score possible is 8,
+as there are 8 characters in the pattern `tutorial`, and it achieves that
+maximum score when we match together `tutorial` in the text string and
+`tutorial` in the pattern string. As well, the first position has a
+score of 1, because the `i` in the pattern string `tutorial` matches the 1
+`i` in `is`; the subject substring here is `This is `.
 
 ```{r ps_r}
 pattern_search("This is an awesome tutorial to get to know SeqAn!", "tutorial")
@@ -80,12 +105,53 @@ pattern_search("This is an awesome tutorial to get to know SeqAn!", "tutorial")
 
 ### A more detailed look at the program
 
-As we can see, writing a C++ function that utilizes SeqAn inside R is quite easy with Rcpp. We included `<seqan/file.h>` as well as `<seqan/sequence.h>` as those are the modeuls that provide the SeqAn [String class](http://docs.seqan.de/seqan/master/?p=String). This is one of the most fundamental classes in SeqAn.
+As we can see, writing a C++ function that utilizes SeqAn inside R is
+quite easy with Rcpp. We included `<seqan/file.h>` as well as
+`<seqan/sequence.h>` as those are the modules that provide the SeqAn
+[String class](http://docs.seqan.de/seqan/master/?p=String). This is
+one of the most fundamental classes in SeqAn.
 
-However, the function we wrote does look slightly different from the one in the [A First Example](http://seqan.readthedocs.io/en/master/Tutorial/GettingStarted/AFirstExample.html#tutorial-getting-started-first-steps-in-seqan) section. First, instead of the function `int main()`, we have instead written the function `IntegerVector pattern_search(std::string t, std::string p)`. (Note: we already declared the namespace std, but it was left here in the function for clarity) Next, instead of printing the score to stdout, we are returning it as an `IntegerVector`.
+However, the function we wrote does look slightly different from the
+one in the
+[A First Example](http://seqan.readthedocs.io/en/master/Tutorial/GettingStarted/AFirstExample.html#tutorial-getting-started-first-steps-in-seqan)
+section. First, instead of the function `int main()`, we have instead
+written the function
+`IntegerVector pattern_search(std::string t, std::string p)`.
+(Note: we already declared the namespace std, but it
+was left here in the function for clarity) Next, instead of printing
+the score to stdout, we are returning it as an `IntegerVector`.
 
-The reason we did this is that in order for any function using SeqAn to be useful in R, we probably want it to return something and to take in input. This means that the input and output object types need to be translatable between R and C++. SeqAn uses its own **template functions** and **template classes**, and the String class is one of the most fundamental classes in SeqAn. This makes sense since SeqAn is all about analyzing sequences. However, the String class has no direct translation to R. If you try to input `String<char> text` or return `String<int> score` you will end up with loads of errors from the compiler. So, how do we deal with this?
+The reason we did this is that in order for any function using SeqAn
+to be useful in R, we probably want it to return something and to take
+in input. This means that the input and output object types need to be
+translatable between R and C++. SeqAn uses its own **template functions**
+and **template classes**, and the String class is one of
+the most fundamental classes in SeqAn. This makes sense since SeqAn is
+all about analyzing sequences. However, the String class has no direct
+translation to R. If you try to input `String<char> text` or return
+`String<int> score` you will end up with loads of errors from the
+compiler. So, how do we deal with this?
 
-One way to do this is by writing conversion functions such that R and C++ both understand what the data type you are using (such as String) means. Rcpp provides a nice way to do this through `Rcpp::as<T>(obj)` to convert from R to C++ and `Rcpp::wrap(obj)` to convert from C++ to R. More of this is covered in the Rcpp vignette [Extending Rcpp](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-extending.pdf). Once these functions are written, this is nice for the user as they can just go ahead and `Rcpp::wrap` and `Rcpp::as<T>` as they need. This has not been implemented in RSeqAn yet though, and so for now the user will have to pay attention to how to convert between classes in SeqAn and objects in R for each function that is written.
+One way to do this is by writing conversion functions such that R and
+C++ both understand what the data type you are using (such as String)
+means. Rcpp provides a nice way to do this through `Rcpp::as<T>(obj)`
+to convert from R to C++ and `Rcpp::wrap(obj)` to convert from C++ to
+R. More of this is covered in the Rcpp vignette
+[Extending Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-extending.pdf).
+Once these functions are written, this is nice for the user as they can
+just go ahead and `Rcpp::wrap` and `Rcpp::as<T>` as they need. This
+has not been implemented in RSeqAn yet though, and so for now the user
+will have to pay attention to how to convert between classes in SeqAn
+and objects in R for each function that is written.
 
-Rcpp has its own [data types](https://teuder.github.io/rcpp4everyone_en/070_data_types.html) for going between R and C++, and so that is the `IntegerVector` we declare here. Since `score` is essentially a vector of class `String` with type `int`, instead of iterating through `score` and printing to stdout, we create an `IntegerVector s` with the same length as `score` and iterate through `score` copying its values to `s` in order to be able to return the values in `score`. Similarly, we make use of the fact that Rcpp already autoconverts character strings in R to character strings in C++ and that character strings in C++ can be converted to `String<char>` in SeqAn to write `pattern_search` such that we can run it from R.
+Rcpp has its own [data types](https://teuder.github.io/rcpp4everyone_en/070_data_types.html)
+for going between R and C++, and so that is the `IntegerVector` we
+declare here. Since `score` is essentially a vector of class `String`
+with type `int`, instead of iterating through `score` and printing to
+stdout, we create an `IntegerVector s` with the same length as `score`
+and iterate through `score` copying its values to `s` in order to be
+able to return the values in `score`. Similarly, we make use of the
+fact that Rcpp already autoconverts character strings in R to
+character strings in C++ and that character strings in C++ can be
+converted to `String<char>` in SeqAn to write `pattern_search` such
+that we can run it from R.
