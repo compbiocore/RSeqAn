@@ -67,7 +67,7 @@ IntegerVector pattern_search(std::string t, std::string p) {
     seqan::String<char> text = t;
     seqan::String<char> pattern = p;
     
-    String<int> score;
+    seqan::String<int> score;
     resize(score, length(text) - length(pattern) + 1);
     
     // Computation of the similarities
