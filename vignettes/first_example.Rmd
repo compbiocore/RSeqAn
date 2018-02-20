@@ -53,12 +53,13 @@ pattern string and the subject substring of the database sequence.
 // [[Rcpp::depends(RSeqAn)]]
 
 #include <iostream>
+#include <seqan/platform.h>
 #include <seqan/file.h>
 #include <seqan/sequence.h>
 #include <Rcpp.h>
+
 using namespace Rcpp;
 using namespace seqan;
-using namespace std;
 
 // [[Rcpp::export]]
 IntegerVector pattern_search(std::string t, std::string p) {
