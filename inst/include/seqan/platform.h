@@ -132,6 +132,16 @@
 #endif
 
 /*!
+ * @macro COMPILER_MINGW64
+ * @headerfile <seqan/platform.h>
+ * @brief The compiler is mingw-w64
+ * @signature #define COMPILER_MINGW64
+ */
+#if defined(__MINGW64__) && !defined(COMPILER_WINTEL) && !defined(COMPILER_CLANG)
+#define COMPILER_MINGW64
+#endif
+
+/*!
  * @macro COMPILER_GCC
  * @headerfile <seqan/platform.h>
  * @brief The compiler is the gnu compiler (gcc), if defined
@@ -461,6 +471,8 @@ typedef int8_t __int8;     // nolint
     #elif defined(__OpenBSD__)
     #define SEQAN_ASYNC_IO 0
     // we assume the rest have it (Linux, OSX, Win)
+    #elif defined(__MINGW64__)
+    #define SEQAN_ASYNC_IO 0
     #else
     #define SEQAN_ASYNC_IO 1
     #endif
