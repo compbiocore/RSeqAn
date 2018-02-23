@@ -101,7 +101,7 @@ enum FileMappingMode {
  * @brief The address range in the advise will not be needed any more.
  */
 
-#ifdef STDLIB_VS
+#if defined(STDLIB_VS) || defined(COMPILER_MINGW64)
 
 enum FileMappingAdvise {
     MAP_NORMAL = 0,

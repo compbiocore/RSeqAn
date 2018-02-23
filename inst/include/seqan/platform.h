@@ -215,7 +215,7 @@
 // Intel compiler for windows also triggers this error:
 //   seqan/pipe/pipe_base.h(263): warning #2586: 'bundle5' : decorated name
 //   length exceeded, name was truncated
-#if defined(COMPILER_MSVC) || defined(COMPILER_WINTEL)
+#if defined(COMPILER_MSVC) || defined(COMPILER_WINTEL) || defined(COMPILER_MINGW64)
 #pragma warning( disable : 4503 )
 #endif
 

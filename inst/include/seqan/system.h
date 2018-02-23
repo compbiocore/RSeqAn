@@ -43,7 +43,7 @@
 #include <string>
 #include <iostream>
 
-#ifdef STDLIB_VS
+#if defined(STDLIB_VS) || defined(COMPILER_MINGW64)
 
 #include <windows.h>
 
@@ -56,7 +56,13 @@
 #if SEQAN_ASYNC_IO
 #include <aio.h>
 #endif
+
+#ifdef COMPILER_MINGW64
+#include "mman.h"
+
+#else
 #include <sys/mman.h>
+#endif
 
 #ifndef O_LARGEFILE
 #define O_LARGEFILE 0
