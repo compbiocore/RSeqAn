@@ -12,3 +12,7 @@ RSeqAn can be used via the `LinkingTo:` field in the `DESCRIPTION` field of an R
 ## Author
 
 August Guang
+
+## Citation
+
+Please do not forget to cite SeqAn if you use this package in your acedemic work, even if only in auxiliary tools or pipelines: https://doi.org/10.1016/j.jbiotec.2017.07.017

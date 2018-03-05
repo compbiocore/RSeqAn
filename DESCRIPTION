@@ -6,7 +6,7 @@ Date: 2018-02-13
 Author: August Guang
 Maintainer: August Guang <august.guang@gmail.com>
 Description: Headers from the SeqAn C++ library for easy of usage in R.
-License: BSD_3_clause
+License: BSD_3_clause + file LICENSE
 BugReports: https://github.com/compbiocore/RSeqAn/issues
 RoxygenNote: 6.0.1
 Suggests: knitr,

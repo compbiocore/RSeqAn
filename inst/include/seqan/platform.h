@@ -132,13 +132,13 @@
 #endif
 
 /*!
- * @macro COMPILER_MINGW64
+ * @macro COMPILER_MINGW32
  * @headerfile <seqan/platform.h>
  * @brief The compiler is mingw-w64
- * @signature #define COMPILER_MINGW64
+ * @signature #define COMPILER_MINGW32
  */
-#if defined(__MINGW64__) && !defined(COMPILER_WINTEL) && !defined(COMPILER_CLANG)
-#define COMPILER_MINGW64
+#if defined(__MINGW32__) && !defined(COMPILER_WINTEL) && !defined(COMPILER_CLANG)
+#define COMPILER_MINGW
 #endif
 
 /*!
@@ -215,7 +215,7 @@
 // Intel compiler for windows also triggers this error:
 //   seqan/pipe/pipe_base.h(263): warning #2586: 'bundle5' : decorated name
 //   length exceeded, name was truncated
-#if defined(COMPILER_MSVC) || defined(COMPILER_WINTEL) || defined(COMPILER_MINGW64)
+#if defined(COMPILER_MSVC) || defined(COMPILER_WINTEL) || defined(COMPILER_MINGW)
 #pragma warning( disable : 4503 )
 #endif
 
@@ -471,7 +471,7 @@ typedef int8_t __int8;     // nolint
     #elif defined(__OpenBSD__)
     #define SEQAN_ASYNC_IO 0
     // we assume the rest have it (Linux, OSX, Win)
-    #elif defined(__MINGW64__)
+    #elif defined(__MINGW32__)
     #define SEQAN_ASYNC_IO 0
     #else
     #define SEQAN_ASYNC_IO 1
