@@ -701,12 +701,20 @@ const char * tempFileName()
 
 #else  // ifdef STDLIB_VS
     strcpy(fileNameBuffer, "/tmp/SEQAN.XXXXXXXXXXXXXXXXXXXX");
+    #ifndef __MINGW32__
     mode_t cur_umask = umask(S_IRWXO | S_IRWXG);  // to silence Coverity warning
+    #endif
     int _tmp = mkstemp(fileNameBuffer);
     (void) _tmp;
+    #ifndef __MINGW32__
     umask(cur_umask);
+    #endif
     unlink(fileNameBuffer);
+    #ifndef __MINGW32__
     mkdir(fileNameBuffer, 0777);
+    #else
+    _mkdir(fileNameBuffer);
+    #endif
 
     StaticData::tempFileNames().push_back(fileNameBuffer);
 

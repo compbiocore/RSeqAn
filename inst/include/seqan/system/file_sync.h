@@ -253,6 +253,8 @@ public:
         this->close();
     }
 
+    #ifndef __MINGW32__
+
     inline int _getOFlag(int openMode) const
     {
         int result = O_LARGEFILE;
@@ -365,6 +367,8 @@ public:
             #endif
         return true;
     }
+
+    #endif
 
     virtual bool close()
     {

@@ -43,7 +43,7 @@
 #include <string>
 #include <iostream>
 
-#if defined(STDLIB_VS) || defined(COMPILER_MINGW)
+#if defined(STDLIB_VS) || defined(__MINGW32__)
 
 #include <windows.h>
 
@@ -57,7 +57,7 @@
 #include <aio.h>
 #endif
 
-#if defined(COMPILER_MINGW)
+#ifdef __MINGW32__
 #include <seqan/mman.h>
 #else
 #include <sys/mman.h>
