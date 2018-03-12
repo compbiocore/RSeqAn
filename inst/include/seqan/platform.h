@@ -132,7 +132,7 @@
 #endif
 
 /*!
- * @macro COMPILER_MINGW32
+ * @macro COMPILER_MINGW
  * @headerfile <seqan/platform.h>
  * @brief The compiler is mingw-w64
  * @signature #define COMPILER_MINGW32
@@ -295,7 +295,7 @@ typedef uint16_t __uint16; // nolint
 [[deprecated("Use uint8_t instead.")]]
 typedef uint8_t __uint8;   // nolint
 
-#if !(defined(COMPILER_LINTEL) || defined(STDLIB_VS))
+#if !(defined(COMPILER_LINTEL) || defined(STDLIB_VS) || defined(COMPILER_MINGW))
 [[deprecated("Use int64_t instead.")]]
 typedef int64_t __int64;   // nolint
 [[deprecated("Use int32_t instead.")]]

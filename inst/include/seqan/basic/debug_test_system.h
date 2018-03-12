@@ -163,6 +163,11 @@
 #include <Windows.h>    // DeleteFile()
 #else  // #ifdef STDLIB_VS
 #include <unistd.h>     // unlink()
+
+#ifdef __MINGW32__
+#include <direct.h>
+#endif
+
 #include <sys/stat.h>   // mkdir()
 #include <dirent.h>     // DIR
 #if SEQAN_HAS_EXECINFO

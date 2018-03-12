@@ -1,7 +1,7 @@
 Package: RSeqAn
 Type: Package
 Title: R SeqAn
-Version: 0.99.2
+Version: 0.99.3
 Date: 2018-02-13
 Author: August Guang
 Maintainer: August Guang <august.guang@gmail.com>
