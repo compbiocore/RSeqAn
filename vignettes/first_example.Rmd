@@ -1,10 +1,10 @@
 ---
-title: "A First Example"
+title: "Introduction to Using RSeqAn"
 author: "August Guang"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-    %\VignetteIndexEntry{A First Example}
+    %\VignetteIndexEntry{Introduction to Using RSeqAn}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 ---
@@ -140,9 +140,9 @@ R. More of this is covered in the Rcpp vignette
 [Extending Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-extending.pdf).
 Once these functions are written, this is nice for the user as they can
 just go ahead and `Rcpp::wrap` and `Rcpp::as<T>` as they need. This
-has not been implemented in RSeqAn yet though, and so for now the user
-will have to pay attention to how to convert between classes in SeqAn
-and objects in R for each function that is written.
+has not been implemented in RSeqAn yet though, although it is a future goal.
+Thus for now the user will have to pay attention to how to convert between
+classes in SeqAn and objects in R for each function that is written.
 
 Rcpp has its own [data types](https://teuder.github.io/rcpp4everyone_en/070_data_types.html)
 for going between R and C++, and so that is the `IntegerVector` we
