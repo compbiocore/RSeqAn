@@ -1,7 +1,7 @@
 Package: RSeqAn
 Type: Package
 Title: R SeqAn
-Version: 0.99.5
+Version: 1.0.0
 Authors@R: person("August", "Guang", role=c("aut","cre"), email = "august.guang@gmail.com")
 Description: Headers from the SeqAn C++ library for easy of usage in R.
 License: BSD_3_clause + file LICENSE
