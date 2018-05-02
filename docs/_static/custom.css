@@ -1,0 +1,18 @@
+/* This file intentionally left blank. */
+@import url("basic.css");
+
+.redtext {
+  color: red;
+}
+
+.bluetext {
+  color: blue;
+}
+
+div.sphinxsidebar a {
+    color: #ed1b24;
+    }
+
+div.sphinxsidebar a:hover {
+	color: #ff5e4e;
+}

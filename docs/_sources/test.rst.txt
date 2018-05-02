@@ -1,0 +1,229 @@
+.. raw:: html
+
+   <div class="container template-home">
+
+.. raw:: html
+
+   <div class="navbar navbar-default navbar-fixed-top"
+   role="navigation">
+
+.. raw:: html
+
+   <div class="container">
+
+.. raw:: html
+
+   <div class="navbar-header">
+
+ `RSeqAn <index.html>`__ 0.99.5
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div id="navbar" class="navbar-collapse collapse">
+
+-  ` <index.html>`__
+-  `Reference <reference/index.html>`__
+-  `Articles  <#>`__
+
+   -  `Introduction to Using RSeqAn <articles/first_example.html>`__
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="row">
+
+.. raw:: html
+
+   <div class="contents col-md-9">
+
+.. raw:: html
+
+   <div id="rseqan" class="section level1">
+
+.. raw:: html
+
+   <div class="page-header">
+
+.. rubric:: ` <#rseqan>`__\ RSeqAn
+   :name: rseqan
+   :class: hasAnchor
+
+.. raw:: html
+
+   </div>
+
+SeqAn Headers for R
+
+.. raw:: html
+
+   <div id="about" class="section level2">
+
+.. rubric:: ` <#about>`__\ About
+   :name: about
+   :class: hasAnchor
+
+This package provides R with access to `SeqAn
+v2.4 <http://www.seqan.de/>`__ header files. SeqAn is an open source C++
+library of efficient algorithms and data structures for the analysis of
+sequences with the focus on biological data.
+
+RSeqAn can be used via the ``LinkingTo:`` field in the ``DESCRIPTION``
+field of an R package. Note that the compiler will need to compile as
+C++14. This can be done in R as
+``Sys.setenv("PKG_CXXFLAGS"="-std=c++14")``.
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div id="author" class="section level2">
+
+.. rubric:: ` <#author>`__\ Author
+   :name: author
+   :class: hasAnchor
+
+August Guang
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div id="citation" class="section level2">
+
+.. rubric:: ` <#citation>`__\ Citation
+   :name: citation
+   :class: hasAnchor
+
+Please do not forget to cite SeqAn if you use this package in your
+acedemic work, even if only in auxiliary tools or pipelines:
+https://doi.org/10.1016/j.jbiotec.2017.07.017
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div id="sidebar" class="col-md-3">
+
+.. raw:: html
+
+   <div class="links">
+
+.. rubric:: Links
+   :name: links
+
+-  Download from BIOC at
+   `https://​www.bioconductor.org/​packages/​RSeqAn <https://www.bioconductor.org/packages/RSeqAn>`__
+-  Report a bug at
+   `https://​github.com/​compbiocore/​RSeqAn/​issues <https://github.com/compbiocore/RSeqAn/issues>`__
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="license">
+
+.. rubric:: License
+   :name: license
+
+-  `BSD_3_clause <https://opensource.org/licenses/BSD-3-Clause>`__ +
+   file `LICENSE <LICENSE-text.html>`__
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="developers">
+
+.. rubric:: Developers
+   :name: developers
+
+-  August Guang
+   Author, maintainer
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="dev-status">
+
+.. rubric:: Dev status
+   :name: dev-status
+
+-  |Build Status|
+-  |License|
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="copyright">
+
+Developed by August Guang.
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div class="pkgdown">
+
+Site built with `pkgdown <http://pkgdown.r-lib.org/>`__.
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. |Build Status| image:: https://travis-ci.org/compbiocore/RSeqAn.svg?branch=master
+   :target: https://travis-ci.org/compbiocore/RSeqAn
+.. |License| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
+   :target: https://opensource.org/licenses/BSD-3-Clause
