@@ -46,8 +46,8 @@ matrix:
         - Rscript make.R
         - mkdir docs/styles
         - mkdir docs/images
-        - curl https://raw.githubusercontent.com/compbiocore/cbc-documentation-templates/master/docs/assets/styles/dark_mode.css > docs/styles/dark_mode.css
-        - curl https://raw.githubusercontent.com/compbiocore/cbc-documentation-templates/master/docs/assets/img/cbc-logo.svg > docs/images/cbc-logo.svg
+        - curl https://gist.githubusercontent.com/fernandogelin/08ecff3387dffc374c4abf06a577ab71/raw/083a383e51533feb20f3b03e6edcd9e86ddc59f9/dark_mode.css > docs/styles/dark_mode.css
+        - curl https://gist.githubusercontent.com/fernandogelin/b02ee98f2f35ce4263093f7a1c66582b/raw/8c8b8a03203f2dbc9040ea2970fc888f14e08cb6/cbc-logo.svg > docs/images/cbc-logo.svg
         - mkdocs build --verbose --clean --strict
       deploy:
        provider: pages
