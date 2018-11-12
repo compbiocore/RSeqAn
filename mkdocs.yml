@@ -1,0 +1,27 @@
+site_name:        RSeqAn
+site_author:      August Guang
+repo_url:         https://github.com/compbiocore/RSeqAn
+site_description: Documentation for Bioconductor package RSeqAn.
+site_url: https://compbiocore.github.io/RSeqAn #this is the main site!
+
+theme:
+  name: material
+  palette:
+    primary: 'blue grey'
+    accent: 'indigo'
+  logo: images/cbc-logo.svg
+
+extra_css:
+  - styles/dark_mode.css
+
+markdown_extensions:
+  - extra
+  - tables
+  - fenced_code
+  - admonition
+  - codehilite
+  - footnotes
+
+nav:
+  - Home: 'index.md'
+  - Vignette: 'first-example.md'
