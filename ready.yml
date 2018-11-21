@@ -1,0 +1,9 @@
+repo: RSeqAn
+site_name: RSeqAn
+authors:      
+  - name: August Guang
+    github_user: aguang
+site_description: Wrappers for the SeqAn library for use in R with Rcpp.
+docs_url: https://compbiocore.github.io/RSeqAn
+type: software    # required. choose one of [software, tutorial, workshop, documentation]
+pypi: false # if project is on pypi
