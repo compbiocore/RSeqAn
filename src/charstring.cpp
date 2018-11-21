@@ -23,9 +23,6 @@ namespace Rcpp {
     };
 }
 
-
-using namespace seqan;
-
 //' containment test
 //' @export
 // [[Rcpp::export]]

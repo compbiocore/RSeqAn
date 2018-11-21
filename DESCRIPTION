@@ -10,7 +10,8 @@ SystemRequirements: C++14
 LinkingTo: Rcpp
 Imports: Rcpp
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
 biocViews: Infrastructure, Software
 RoxygenNote: 6.1.0

@@ -1,6 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .travis.yml
+make.R
+mkdocs.yml
 vignettes/adapter_content.Rmd
 vignettes/adapter_content.html
 vignettes/file_io.Rmd
