@@ -24,6 +24,7 @@ namespace Rcpp {
 }
 
 //' containment test
+//' @param s1 Should be a character string
 //' @export
 // [[Rcpp::export]]
 Rcpp::String containment_test(SEXP s1) {
