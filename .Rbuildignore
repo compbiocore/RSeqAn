@@ -3,6 +3,7 @@
 .travis.yml
 make.R
 mkdocs.yml
+configure.sh
 vignettes/adapter_content.Rmd
 vignettes/adapter_content.html
 vignettes/file_io.Rmd
