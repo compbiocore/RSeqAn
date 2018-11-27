@@ -2,6 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' containment test
+#' @param s1 Should be a character string
 #' @export
 containment_test <- function(s1) {
     .Call('_RSeqAn_containment_test', PACKAGE = 'RSeqAn', s1)

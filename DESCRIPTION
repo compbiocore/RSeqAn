@@ -3,10 +3,15 @@ Type: Package
 Title: R SeqAn
 Version: 0.99.5
 Authors@R: person("August", "Guang", role=c("aut","cre"), email = "august.guang@gmail.com")
-Description: Headers from the SeqAn C++ library for easy of usage in R.
+Description: Headers and some wrapper functions from the SeqAn C++ library for ease of usage in R.
 License: BSD_3_clause + file LICENSE
 BugReports: https://github.com/compbiocore/RSeqAn/issues
+SystemRequirements: C++14
+LinkingTo: Rcpp
+Imports: Rcpp
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
 biocViews: Infrastructure, Software
+RoxygenNote: 6.1.0
