@@ -37,8 +37,8 @@ matrix:
         - source activate test-env
         - pip install mkdocs==1 mkdocs-material==3.0.3
         - conda install r-knitr r-devtools
-        - R -e 'remove.packages(c("curl","httr")); install.packages(c("curl", "httr")); Sys.setenv(CURL_CA_BUNDLE="/utils/microsoft-r-open-3.5.0/lib64/R/lib/microsoft-r-cacert.pem")'
-        - R -e 'install.packages("Rd2md")'
+        - R -e 'remove.packages(c("curl","httr")); install.packages(c("curl", "httr"), repos="http://cran.us.r-project.org"); Sys.setenv(CURL_CA_BUNDLE="/utils/microsoft-r-open-3.5.0/lib64/R/lib/microsoft-r-cacert.pem")'
+        - R -e 'install.packages("Rd2md", repos="http://cran.us.r-project.org")'
         - R -e 'source("https://bioconductor.org/biocLite.R"); biocLite("BiocInstaller"); library(devtools); install_github("compbiocore/qckitfastq",build_vignettes=FALSE)'
       before_script:
         - source activate test-env
