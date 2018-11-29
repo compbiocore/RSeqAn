@@ -1,3 +1,10 @@
+RSeqAn
+
+RSeqAn 1.3.1
+---
+
+ * CharString as/wrap wrappers and tests written.
+
 RSeqAn 0.99.0
 ---
 
