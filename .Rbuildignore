@@ -1,8 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .travis.yml
+ready.yml
 make.R
 mkdocs.yml
+paper.md
 configure.sh
 vignettes/adapter_content.Rmd
 vignettes/adapter_content.html
