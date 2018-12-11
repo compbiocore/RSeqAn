@@ -14,4 +14,4 @@ Suggests: knitr,
     testthat
 VignetteBuilder: knitr
 biocViews: Infrastructure, Software
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
