@@ -1,19 +1,31 @@
 ---
 title: "RSeqAn"
-output: html_notebook
+output:
+  pdf_document:
+    toc: yes
+  html_notebook: default
+  html_document: default
+bibliography: paper.bib
 ---
 
 Benchmarking
 
 ```{r}
 library(RSeqAn)
-devtools::install_github("compbiocore/qckitfastq")
+devtools::install_github("compbiocore/qckitfastq", ref="v0.9-prerelease")
 library(qckitfastq)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+# Summary
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+This package provides R with access to SeqAn v2.4 [@Doring2008] header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. Many packages in R are sped up with C or C++ code, but this is not a common practice in R packages for bioinformatics (back up this statement by an analysis of packages on Bioconductor). By providing access to SeqAn header files as well as wrappers to convert between R objects and C++ objects (look up exact terminology), we provide an easy way to write R bioinformatics packages that are much more efficient.
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+As a proof of concept for its utility, we have benchmarked a package that uses RSeqAn for quality control on bioinformatics data compared to other packages on Bioconductor that are written purely in R.
 
+Statement of need
+
+Benchmark
+
+RSeqAn has been used in `qckitfastq` recently.
+
+# References

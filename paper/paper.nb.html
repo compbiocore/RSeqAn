@@ -1702,19 +1702,32 @@ $(document).ready(function () {
 <p>Benchmarking</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShSU2VxQW4pXG5kZXZ0b29sczo6aW5zdGFsbF9naXRodWIoXCJjb21wYmlvY29yZS9xY2tpdGZhc3RxXCIpXG5saWJyYXJ5KHFja2l0ZmFzdHEpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShSU2VxQW4pXG5kZXZ0b29sczo6aW5zdGFsbF9naXRodWIoXCJjb21wYmlvY29yZS9xY2tpdGZhc3RxXCIsIHJlZj1cInYwLjktcHJlcmVsZWFzZVwiKVxubGlicmFyeShxY2tpdGZhc3RxKVxuYGBgIn0= -->
 <pre class="r"><code>library(RSeqAn)
-devtools::install_github(&quot;compbiocore/qckitfastq&quot;)
+devtools::install_github(&quot;compbiocore/qckitfastq&quot;, ref=&quot;v0.9-prerelease&quot;)
 library(qckitfastq)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Cmd+Option+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>This package provides R with access to SeqAn v2.4 <span class="citation">(Döring et al. 2008)</span> header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. Many packages in R are sped up with C or C++ code, but this is not a common practice in R packages for bioinformatics (back up this statement by an analysis of packages on Bioconductor). By providing access to SeqAn header files as well as wrappers to convert between R objects and C++ objects (look up exact terminology), we provide an easy way to write R bioinformatics packages that are much more efficient.</p>
+<p>As a proof of concept for its utility, we have benchmarked a package that uses RSeqAn for quality control on bioinformatics data compared to other packages on Bioconductor that are written purely in R.</p>
+<p>Statement of need</p>
+<p>Benchmark</p>
+<p>RSeqAn has been used in <code>qckitfastq</code> recently.</p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
 <!-- rnb-text-end -->
+<div id="refs" class="references">
+<div id="ref-Doring2008">
+<p>Döring, Andreas, David Weese, Tobias Rausch, and Knut Reinert. 2008. “SeqAn an efficient, generic C++ library for sequence analysis.” <em>BMC Bioinformatics</em>. <a href="https://doi.org/10.1186/1471-2105-9-11" class="uri">https://doi.org/10.1186/1471-2105-9-11</a>.</p>
+</div>
+</div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUlNlcUFuIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpCZW5jaG1hcmtpbmcKCmBgYHtyfQpsaWJyYXJ5KFJTZXFBbikKZGV2dG9vbHM6Omluc3RhbGxfZ2l0aHViKCJjb21wYmlvY29yZS9xY2tpdGZhc3RxIikKbGlicmFyeShxY2tpdGZhc3RxKQpgYGAKCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDbWQrT3B0aW9uK0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDbWQrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4gCgpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUlNlcUFuIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OgogICAgdG9jOiB5ZXMKICBodG1sX25vdGVib29rOiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDogZGVmYXVsdApiaWJsaW9ncmFwaHk6IHBhcGVyLmJpYgotLS0KCkJlbmNobWFya2luZwoKYGBge3J9CmxpYnJhcnkoUlNlcUFuKQpkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoImNvbXBiaW9jb3JlL3Fja2l0ZmFzdHEiLCByZWY9InYwLjktcHJlcmVsZWFzZSIpCmxpYnJhcnkocWNraXRmYXN0cSkKYGBgCgojIFN1bW1hcnkKClRoaXMgcGFja2FnZSBwcm92aWRlcyBSIHdpdGggYWNjZXNzIHRvIFNlcUFuIHYyLjQgW0BEb3JpbmcyMDA4XSBoZWFkZXIgZmlsZXMuIFNlcUFuIGlzIGFuIG9wZW4gc291cmNlIEMrKyBsaWJyYXJ5IG9mIGVmZmljaWVudCBhbGdvcml0aG1zIGFuZCBkYXRhIHN0cnVjdHVyZXMgZm9yIHRoZSBhbmFseXNpcyBvZiBzZXF1ZW5jZXMgd2l0aCBhIGZvY3VzIG9uIGJpb2xvZ2ljYWwgZGF0YS4gTWFueSBwYWNrYWdlcyBpbiBSIGFyZSBzcGVkIHVwIHdpdGggQyBvciBDKysgY29kZSwgYnV0IHRoaXMgaXMgbm90IGEgY29tbW9uIHByYWN0aWNlIGluIFIgcGFja2FnZXMgZm9yIGJpb2luZm9ybWF0aWNzIChiYWNrIHVwIHRoaXMgc3RhdGVtZW50IGJ5IGFuIGFuYWx5c2lzIG9mIHBhY2thZ2VzIG9uIEJpb2NvbmR1Y3RvcikuIEJ5IHByb3ZpZGluZyBhY2Nlc3MgdG8gU2VxQW4gaGVhZGVyIGZpbGVzIGFzIHdlbGwgYXMgd3JhcHBlcnMgdG8gY29udmVydCBiZXR3ZWVuIFIgb2JqZWN0cyBhbmQgQysrIG9iamVjdHMgKGxvb2sgdXAgZXhhY3QgdGVybWlub2xvZ3kpLCB3ZSBwcm92aWRlIGFuIGVhc3kgd2F5IHRvIHdyaXRlIFIgYmlvaW5mb3JtYXRpY3MgcGFja2FnZXMgdGhhdCBhcmUgbXVjaCBtb3JlIGVmZmljaWVudC4KCkFzIGEgcHJvb2Ygb2YgY29uY2VwdCBmb3IgaXRzIHV0aWxpdHksIHdlIGhhdmUgYmVuY2htYXJrZWQgYSBwYWNrYWdlIHRoYXQgdXNlcyBSU2VxQW4gZm9yIHF1YWxpdHkgY29udHJvbCBvbiBiaW9pbmZvcm1hdGljcyBkYXRhIGNvbXBhcmVkIHRvIG90aGVyIHBhY2thZ2VzIG9uIEJpb2NvbmR1Y3RvciB0aGF0IGFyZSB3cml0dGVuIHB1cmVseSBpbiBSLgoKU3RhdGVtZW50IG9mIG5lZWQKCkJlbmNobWFyawoKUlNlcUFuIGhhcyBiZWVuIHVzZWQgaW4gYHFja2l0ZmFzdHFgIHJlY2VudGx5LgoKIyBSZWZlcmVuY2Vz</div>
 
 
 
