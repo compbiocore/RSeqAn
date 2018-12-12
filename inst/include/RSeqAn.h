@@ -7,7 +7,4 @@
 
 #include <Rcpp.h>
 
-#include <RSeqAnWrap.h>
-//#include <RSeqAnAs.h>
-
 #endif

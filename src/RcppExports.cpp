@@ -7,7 +7,7 @@
 using namespace Rcpp;
 
 // containment_test
-Rcpp::String containment_test(SEXP s1);
+seqan::CharString containment_test(SEXP s1);
 RcppExport SEXP _RSeqAn_containment_test(SEXP s1SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
