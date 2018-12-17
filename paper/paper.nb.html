@@ -10,6 +10,7 @@
 
 
 
+<meta name="date" content="2018-12-07" />
 
 <title>RSeqAn</title>
 
@@ -1694,6 +1695,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">RSeqAn</h1>
+<h4 class="date"><em>7 December 2018</em></h4>
 
 </div>
 
@@ -1702,20 +1704,22 @@ $(document).ready(function () {
 <p>Benchmarking</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShSU2VxQW4pXG5kZXZ0b29sczo6aW5zdGFsbF9naXRodWIoXCJjb21wYmlvY29yZS9xY2tpdGZhc3RxXCIsIHJlZj1cInYwLjktcHJlcmVsZWFzZVwiKVxubGlicmFyeShxY2tpdGZhc3RxKVxuYGBgIn0= -->
-<pre class="r"><code>library(RSeqAn)
-devtools::install_github(&quot;compbiocore/qckitfastq&quot;, ref=&quot;v0.9-prerelease&quot;)
-library(qckitfastq)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeShSU2VxQW4pXG5kZXZ0b29sczo6aW5zdGFsbF9naXRodWIoXFxjb21wYmlvY29yZS9xY2tpdGZhc3RxXFwsIHJlZj1cXHYwLjktcHJlcmVsZWFzZVxcKVxubGlicmFyeShxY2tpdGZhc3RxKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r library(RSeqAn) devtools::install_github(/qckitfastq, ref=.9-prerelease) library(qckitfastq)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="summary" class="section level1">
 <h1>Summary</h1>
 <p>This package provides R with access to SeqAn v2.4 <span class="citation">(Döring et al. 2008)</span> header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. Many packages in R are sped up with C or C++ code, but this is not a common practice in R packages for bioinformatics (back up this statement by an analysis of packages on Bioconductor). By providing access to SeqAn header files as well as wrappers to convert between R objects and C++ objects (look up exact terminology), we provide an easy way to write R bioinformatics packages that are much more efficient.</p>
-<p>As a proof of concept for its utility, we have benchmarked a package that uses RSeqAn for quality control on bioinformatics data compared to other packages on Bioconductor that are written purely in R.</p>
-<p>Statement of need</p>
-<p>Benchmark</p>
-<p>RSeqAn has been used in <code>qckitfastq</code> recently.</p>
+<p>As a proof of concept for its utility, we have benchmarked a function from <code>qckitfastq</code>, a package that uses RSeqAn for quality control on bioinformatics data compared to <code>ShortRead</code>, another package on Bioconductor serving the same function that is purely written in R. As can be seen, computing adapter content through <code>qckitfastq</code> is much faster than <code>ShortRead</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
@@ -1727,7 +1731,7 @@ library(qckitfastq)</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUlNlcUFuIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OgogICAgdG9jOiB5ZXMKICBodG1sX25vdGVib29rOiBkZWZhdWx0CiAgaHRtbF9kb2N1bWVudDogZGVmYXVsdApiaWJsaW9ncmFwaHk6IHBhcGVyLmJpYgotLS0KCkJlbmNobWFya2luZwoKYGBge3J9CmxpYnJhcnkoUlNlcUFuKQpkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoImNvbXBiaW9jb3JlL3Fja2l0ZmFzdHEiLCByZWY9InYwLjktcHJlcmVsZWFzZSIpCmxpYnJhcnkocWNraXRmYXN0cSkKYGBgCgojIFN1bW1hcnkKClRoaXMgcGFja2FnZSBwcm92aWRlcyBSIHdpdGggYWNjZXNzIHRvIFNlcUFuIHYyLjQgW0BEb3JpbmcyMDA4XSBoZWFkZXIgZmlsZXMuIFNlcUFuIGlzIGFuIG9wZW4gc291cmNlIEMrKyBsaWJyYXJ5IG9mIGVmZmljaWVudCBhbGdvcml0aG1zIGFuZCBkYXRhIHN0cnVjdHVyZXMgZm9yIHRoZSBhbmFseXNpcyBvZiBzZXF1ZW5jZXMgd2l0aCBhIGZvY3VzIG9uIGJpb2xvZ2ljYWwgZGF0YS4gTWFueSBwYWNrYWdlcyBpbiBSIGFyZSBzcGVkIHVwIHdpdGggQyBvciBDKysgY29kZSwgYnV0IHRoaXMgaXMgbm90IGEgY29tbW9uIHByYWN0aWNlIGluIFIgcGFja2FnZXMgZm9yIGJpb2luZm9ybWF0aWNzIChiYWNrIHVwIHRoaXMgc3RhdGVtZW50IGJ5IGFuIGFuYWx5c2lzIG9mIHBhY2thZ2VzIG9uIEJpb2NvbmR1Y3RvcikuIEJ5IHByb3ZpZGluZyBhY2Nlc3MgdG8gU2VxQW4gaGVhZGVyIGZpbGVzIGFzIHdlbGwgYXMgd3JhcHBlcnMgdG8gY29udmVydCBiZXR3ZWVuIFIgb2JqZWN0cyBhbmQgQysrIG9iamVjdHMgKGxvb2sgdXAgZXhhY3QgdGVybWlub2xvZ3kpLCB3ZSBwcm92aWRlIGFuIGVhc3kgd2F5IHRvIHdyaXRlIFIgYmlvaW5mb3JtYXRpY3MgcGFja2FnZXMgdGhhdCBhcmUgbXVjaCBtb3JlIGVmZmljaWVudC4KCkFzIGEgcHJvb2Ygb2YgY29uY2VwdCBmb3IgaXRzIHV0aWxpdHksIHdlIGhhdmUgYmVuY2htYXJrZWQgYSBwYWNrYWdlIHRoYXQgdXNlcyBSU2VxQW4gZm9yIHF1YWxpdHkgY29udHJvbCBvbiBiaW9pbmZvcm1hdGljcyBkYXRhIGNvbXBhcmVkIHRvIG90aGVyIHBhY2thZ2VzIG9uIEJpb2NvbmR1Y3RvciB0aGF0IGFyZSB3cml0dGVuIHB1cmVseSBpbiBSLgoKU3RhdGVtZW50IG9mIG5lZWQKCkJlbmNobWFyawoKUlNlcUFuIGhhcyBiZWVuIHVzZWQgaW4gYHFja2l0ZmFzdHFgIHJlY2VudGx5LgoKIyBSZWZlcmVuY2Vz</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUlNlcUFuIgp0YWdzOgogIC0gU2VxQW4KICAtIGJpb2luZm9ybWF0aWNzCiAgLSBSCmF1dGhvcnM6CiAtIG5hbWU6IEF1Z3VzdCBHdWFuZwogICBvcmNpZDogMDAwMC0wMDAzLTA4NzItNzA5OAogICBhZmZpbGlhdGlvbjogMQphZmZpbGlhdGlvbnM6CiAtIG5hbWU6IEJyb3duIFVuaXZlcnNpdHkKICAgaW5kZXg6IDEKZGF0ZTogNyBEZWNlbWJlciAyMDE4Cm91dHB1dDoKICBwZGZfZG9jdW1lbnQ6CiAgICB0b2M6IHllcwogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQKICBodG1sX2RvY3VtZW50OiBkZWZhdWx0CmJpYmxpb2dyYXBoeTogcGFwZXIuYmliCi0tLQoKQmVuY2htYXJraW5nCgpgYGB7cn0KbGlicmFyeShSU2VxQW4pCmRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiY29tcGJpb2NvcmUvcWNraXRmYXN0cSIsIHJlZj0idjAuOS1wcmVyZWxlYXNlIikKbGlicmFyeShxY2tpdGZhc3RxKQpsaWJyYXJ5KFNob3J0UmVhZCkKbGlicmFyeShyYmVuY2htYXJrKQpgYGAKCiMgU3VtbWFyeQoKVGhpcyBwYWNrYWdlIHByb3ZpZGVzIFIgd2l0aCBhY2Nlc3MgdG8gU2VxQW4gdjIuNCBbQERvcmluZzIwMDhdIGhlYWRlciBmaWxlcy4gU2VxQW4gaXMgYW4gb3BlbiBzb3VyY2UgQysrIGxpYnJhcnkgb2YgZWZmaWNpZW50IGFsZ29yaXRobXMgYW5kIGRhdGEgc3RydWN0dXJlcyBmb3IgdGhlIGFuYWx5c2lzIG9mIHNlcXVlbmNlcyB3aXRoIGEgZm9jdXMgb24gYmlvbG9naWNhbCBkYXRhLiBNYW55IHBhY2thZ2VzIGluIFIgYXJlIHNwZWQgdXAgd2l0aCBDIG9yIEMrKyBjb2RlLCBidXQgdGhpcyBpcyBub3QgYSBjb21tb24gcHJhY3RpY2UgaW4gUiBwYWNrYWdlcyBmb3IgYmlvaW5mb3JtYXRpY3MgKGJhY2sgdXAgdGhpcyBzdGF0ZW1lbnQgYnkgYW4gYW5hbHlzaXMgb2YgcGFja2FnZXMgb24gQmlvY29uZHVjdG9yKS4gQnkgcHJvdmlkaW5nIGFjY2VzcyB0byBTZXFBbiBoZWFkZXIgZmlsZXMgYXMgd2VsbCBhcyB3cmFwcGVycyB0byBjb252ZXJ0IGJldHdlZW4gUiBvYmplY3RzIGFuZCBDKysgb2JqZWN0cyAobG9vayB1cCBleGFjdCB0ZXJtaW5vbG9neSksIHdlIHByb3ZpZGUgYW4gZWFzeSB3YXkgdG8gd3JpdGUgUiBiaW9pbmZvcm1hdGljcyBwYWNrYWdlcyB0aGF0IGFyZSBtdWNoIG1vcmUgZWZmaWNpZW50LgoKQXMgYSBwcm9vZiBvZiBjb25jZXB0IGZvciBpdHMgdXRpbGl0eSwgd2UgaGF2ZSBiZW5jaG1hcmtlZCBhIGZ1bmN0aW9uIGZyb20gYHFja2l0ZmFzdHFgLCBhIHBhY2thZ2UgdGhhdCB1c2VzIFJTZXFBbiBmb3IgcXVhbGl0eSBjb250cm9sIG9uIGJpb2luZm9ybWF0aWNzIGRhdGEgY29tcGFyZWQgdG8gYFNob3J0UmVhZGAsIGFub3RoZXIgcGFja2FnZSBvbiBCaW9jb25kdWN0b3Igc2VydmluZyB0aGUgc2FtZSBmdW5jdGlvbiB0aGF0IGlzIHB1cmVseSB3cml0dGVuIGluIFIuIEFzIGNhbiBiZSBzZWVuLCBjb21wdXRpbmcgYWRhcHRlciBjb250ZW50IHRocm91Z2ggYHFja2l0ZmFzdHFgIGlzIG11Y2ggZmFzdGVyIHRoYW4gYFNob3J0UmVhZGAuCgpgYGB7ciwgdnNfc2hvcnRyZWFkcywgaW5jbHVkZT1GQUxTRX0KIyBTaG9ydFJlYWQgdGVzdCBmaWxlIChoYXMgbm8gYWRhcHRlciBjb250YW1pbmF0aW9uKQpkaXJQYXRoIDwtIHN5c3RlbS5maWxlKHBhY2thZ2U9IlNob3J0UmVhZCIsICJleHRkYXRhIiwgIkUtTVRBQi0xMTQ3IikKZmxzIDwtIGRpcihkaXJQYXRoLCAiZmFzdHEuZ3oiLCBmdWxsPVRSVUUpWzFdCmNvbGwgPC0gUUFDb2xsYXRlKFFBRmFzdHFTb3VyY2UoZmxzKSxRQUFkYXB0ZXJDb250YW1pbmF0aW9uKCkpCmJlbmNobWFyayhxYTIoY29sbCkpCmJlbmNobWFyayhhZGFwdGVyX2NvbnRlbnQoZmxzLG5yPTIwMDAwKSkKCiMgcWNraXRmYXN0cSB0ZXN0IGZpbGUgKGhhcyBhZGFwdGVyIGNvbnRhbWluYXRpb24gaW4gbW9zdCBvZiB0aGUgcmVhZHMpCmluZmlsZSA8LSBzeXN0ZW0uZmlsZShwYWNrYWdlPSJxY2tpdGZhc3RxIiwgImV4dGRhdGEiLCAidGVzdC5mcS5neiIpCmNvbGwyIDwtIFFBQ29sbGF0ZShRQUZhc3RxU291cmNlKGluZmlsZSksUUFBZGFwdGVyQ29udGFtaW5hdGlvbigpKQpiZW5jaG1hcmsocWEyKGNvbGwyKSkKYmVuY2htYXJrKGFkYXB0ZXJfY29udGVudChpbmZpbGUsbnI9MTQpKQpgYGAKCmBgYHtyLCB0YWJsZV92c3Nob3J0cmVhZHN9CmBgYAoKIyBSZWZlcmVuY2Vz</div>
 
 
 

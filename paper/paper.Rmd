@@ -1,31 +1,70 @@
 ---
-title: "RSeqAn"
-output:
-  pdf_document:
-    toc: yes
-  html_notebook: default
-  html_document: default
+title: "RSeqAn: Headers and wrappers for the SeqAn library in R"
+authors:
+  - affiliation: 1
+    name: August Guang
+    orcid: 0000-0003-0872-7098
+date: "7 December 2018"
 bibliography: paper.bib
+tags:
+  - SeqAn
+  - bioinformatics
+  - R
+  - Rcpp
+affiliations:
+  - index: 1
+    name: Brown University
 ---
 
-Benchmarking
-
-```{r}
+```{r, include=FALSE}
 library(RSeqAn)
-devtools::install_github("compbiocore/qckitfastq", ref="v0.9-prerelease")
+#devtools::install_github("compbiocore/qckitfastq", ref="v0.9-prerelease")
 library(qckitfastq)
+library(ShortRead)
+library(rbenchmark)
+library(kableExtra)
 ```
 
 # Summary
 
-This package provides R with access to SeqAn v2.4 [@Doring2008] header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. Many packages in R are sped up with C or C++ code, but this is not a common practice in R packages for bioinformatics (back up this statement by an analysis of packages on Bioconductor). By providing access to SeqAn header files as well as wrappers to convert between R objects and C++ objects (look up exact terminology), we provide an easy way to write R bioinformatics packages that are much more efficient.
+`RSeqAn` provides R with access to SeqAn [@Doring2008,@Reinert2017] header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. It has been used for many popular bioinformatics tools, including Bowtie2 [@Langmead2013] and Tophat [@Trapnell2009]. Many packages in R are sped up with C++ code: as of [November 2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525 packages on CRAN, 1493 of those use Rcpp [@Eddelbuettel2018]. On Bioconductor [@Huber2015], a repository specifically for bioinformatics packages, there is a similar proportion of packages using Rcpp: 150 out of 1649. However, to date these packages have not utilized SeqAn.
 
-As a proof of concept for its utility, we have benchmarked a package that uses RSeqAn for quality control on bioinformatics data compared to other packages on Bioconductor that are written purely in R.
+An R package that does aim to use SeqAn runs into two issues. First, R for Windows is built with the mingw compiler, which the SeqAn development team does not offer support for. Second, SeqAn implements several data types in order to make the library more efficient. Any data types in SeqAn must thus be extended with Rcpp through the templated functions `Rcpp::as` and `Rcpp::wrap`.
 
-Statement of need
+In `RSeqAn` v1.0 we provide access to SeqAn header files and add support for mingw so that it can be used in R for Windows as well. The development version also includes some wrappers to convert between R objects and SeqAn data types with a goal of eventually providing all necessary wrappers for easy interface with SeqAn. `RSeqAn` thus provides an easy way to write R bioinformatics packages that are much more efficient without need for the user to install SeqAn themselves. `RSeqAn` can be installed from Bioconductor, and documentation for it can be found in the package as well as [online](https://compbiocore.github.io/RSeqAn/).
 
-Benchmark
+## Benchmarked Example
 
-RSeqAn has been used in `qckitfastq` recently.
+As a proof of concept for its utility, we have benchmarked a function (searching for adapter contamination) from `qckitfastq`, a package that uses RSeqAn for quality control on bioinformatics data compared to `ShortRead` [@Morgan2009], another package on Bioconductor serving the same function that is purely written in R (Table 1). As can be seen, computing adapter content through `qckitfastq` is much faster than `ShortRead`.
+
+```{r, vs_shortreads, include=FALSE, warning=FALSE}
+# ShortRead test file (has no adapter contamination)
+dirPath <- system.file(package="ShortRead", "extdata", "E-MTAB-1147")
+fls <- dir(dirPath, "fastq.gz", full=TRUE)[1]
+coll <- QACollate(QAFastqSource(fls),QAAdapterContamination())
+sr1<-benchmark(qa2(coll))
+qckit1<-benchmark(adapter_content(fls,nr=20000))
+
+# qckitfastq test file (has adapter contamination in most of the reads)
+infile <- system.file(package="qckitfastq", "extdata", "test.fq.gz")
+coll2 <- QACollate(QAFastqSource(infile),QAAdapterContamination())
+sr2<-benchmark(qa2(coll2))
+qckit2<-benchmark(adapter_content(infile,nr=14))
+
+table <- rbind(sr1, qckit1, sr2, qckit2)
+table$test <- c("ShortRead","qckitfastq","ShortRead","qckitfastq")
+colnames(table)[1] <- "Package"
+```
+
+```{r, table, echo=FALSE}
+kable(table,caption="Benchmark results of qckitfastq, which uses RSeqAn, and ShortRead, which does not against a test file from each package.") %>%
+  group_rows('system.file(package="ShortRead", "extdata", "E-MTAB-1147")', 1, 2) %>%
+  group_rows('system.file(package="qckitfastq", "extdata", "test.fq.gz")',3,4) #%>%
+  #group_rows('SRR166810_1.fastq',5,6)
+```
+
+## Acknowledgments
+
+Thanks to Ashok Ragavendran for the concept of using SeqAn in R packages to speed up functions. Thanks to Fernando Gelin for help with the documentation and style. This publication was supported by an Institutional Development Award (IDeA) from the National Institute of General Medical Sciences of the National Institutes of Health under grant number P20GM109035.
 
 # References
