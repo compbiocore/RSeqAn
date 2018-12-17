@@ -1,19 +1,22 @@
 ---
-title: "RSeqAn: Headers and wrappers for the SeqAn library in R"
+title: 'RSeqAn: Headers and wrappers for the SeqAn library in R'
+author:
+  - August Guang
 authors:
-  - affiliation: 1
-    name: August Guang
-    orcid: 0000-0003-0872-7098
+- affiliation: 1
+  name: August Guang
+  orcid: 0000-0003-0872-7098
 date: "7 December 2018"
+output: pdf_document
 bibliography: paper.bib
 tags:
-  - SeqAn
-  - bioinformatics
-  - R
-  - Rcpp
+- SeqAn
+- bioinformatics
+- R
+- Rcpp
 affiliations:
-  - index: 1
-    name: Brown University
+- index: 1
+  name: Brown University
 ---
 
 ```{r, include=FALSE}
@@ -27,7 +30,7 @@ library(kableExtra)
 
 # Summary
 
-`RSeqAn` provides R with access to SeqAn [@Doring2008,@Reinert2017] header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. It has been used for many popular bioinformatics tools, including Bowtie2 [@Langmead2013] and Tophat [@Trapnell2009]. Many packages in R are sped up with C++ code: as of [November 2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525 packages on CRAN, 1493 of those use Rcpp [@Eddelbuettel2018]. On Bioconductor [@Huber2015], a repository specifically for bioinformatics packages, there is a similar proportion of packages using Rcpp: 150 out of 1649. However, to date these packages have not utilized SeqAn.
+`RSeqAn` provides R with access to SeqAn [@Doring2008, @Reinert2017] header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. It has been used for many popular bioinformatics tools, including Bowtie2 [@Langmead2013] and Tophat [@Trapnell2009]. Many packages in R are sped up with C++ code: as of [November 2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525 packages on CRAN, 1493 of those use Rcpp [@Eddelbuettel2018]. On Bioconductor [@Huber2015], a repository specifically for bioinformatics packages, there is a similar proportion of packages using Rcpp: 150 out of 1649. However, to date these packages have not utilized SeqAn.
 
 An R package that does aim to use SeqAn runs into two issues. First, R for Windows is built with the mingw compiler, which the SeqAn development team does not offer support for. Second, SeqAn implements several data types in order to make the library more efficient. Any data types in SeqAn must thus be extended with Rcpp through the templated functions `Rcpp::as` and `Rcpp::wrap`.
 

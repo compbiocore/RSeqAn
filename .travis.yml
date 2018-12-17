@@ -3,6 +3,7 @@ matrix:
     - stage: test # groups builds by type, add your tests here
       language: r
       r: bioc-release
+      cache: packages
       os: linux
       addons:
         apt:
