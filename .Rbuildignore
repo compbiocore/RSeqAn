@@ -10,3 +10,4 @@ vignettes/adapter_content.Rmd
 vignettes/adapter_content.html
 vignettes/file_io.Rmd
 vignettes/file_io.html
+paper/*
