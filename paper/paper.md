@@ -3,7 +3,7 @@ title: 'RSeqAn: Headers and wrappers for the SeqAn library in R'
 author:
   - August Guang
 authors:
-- affiliation: 1
+- affiliation: 1,2
   name: August Guang
   orcid: 0000-0003-0872-7098
 tags:
@@ -13,7 +13,9 @@ tags:
 - Rcpp
 affiliations:
 - index: 1
-  name: Brown University
+  name: Center for Computation and Visualization, Brown University, Providence, Rhode Island, United States of America
+- index: 2
+  name: Center for Computational Biology of Human Disease, Brown University, Providence, Rhode Island, United States of America
 ---
 
 Summary
