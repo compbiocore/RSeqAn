@@ -7,7 +7,7 @@ authors:
   name: August Guang
   orcid: 0000-0003-0872-7098
 date: "7 December 2018"
-output: pdf_document
+output: md_document
 bibliography: paper.bib
 tags:
 - SeqAn
@@ -25,12 +25,13 @@ library(RSeqAn)
 library(qckitfastq)
 library(ShortRead)
 library(rbenchmark)
-library(kableExtra)
+#library(kableExtra)
+library(pander)
 ```
 
 # Summary
 
-`RSeqAn` provides R with access to SeqAn [@Doring2008, @Reinert2017] header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. It has been used for many popular bioinformatics tools, including Bowtie2 [@Langmead2013] and Tophat [@Trapnell2009]. Many packages in R are sped up with C++ code: as of [November 2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525 packages on CRAN, 1493 of those use Rcpp [@Eddelbuettel2018]. On Bioconductor [@Huber2015], a repository specifically for bioinformatics packages, there is a similar proportion of packages using Rcpp: 150 out of 1649. However, to date these packages have not utilized SeqAn.
+`RSeqAn` provides R with access to SeqAn [@Doring2008; @Reinert2017] header files. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. It has been used for many popular bioinformatics tools, including Bowtie2 [@Langmead2013] and Tophat [@Trapnell2009]. Many packages in R are sped up with C++ code: as of [November 2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525 packages on CRAN, 1493 of those use Rcpp [@Eddelbuettel2018]. On Bioconductor [@Huber2015], a repository specifically for bioinformatics packages, there is a similar proportion of packages using Rcpp: 150 out of 1649. However, to date these packages have not utilized SeqAn.
 
 An R package that does aim to use SeqAn runs into two issues. First, R for Windows is built with the mingw compiler, which the SeqAn development team does not offer support for. Second, SeqAn implements several data types in order to make the library more efficient. Any data types in SeqAn must thus be extended with Rcpp through the templated functions `Rcpp::as` and `Rcpp::wrap`.
 
@@ -40,29 +41,31 @@ In `RSeqAn` v1.0 we provide access to SeqAn header files and add support for min
 
 As a proof of concept for its utility, we have benchmarked a function (searching for adapter contamination) from `qckitfastq`, a package that uses RSeqAn for quality control on bioinformatics data compared to `ShortRead` [@Morgan2009], another package on Bioconductor serving the same function that is purely written in R (Table 1). As can be seen, computing adapter content through `qckitfastq` is much faster than `ShortRead`.
 
-```{r, vs_shortreads, include=FALSE, warning=FALSE}
+```{r, vs_shortreads, echo=FALSE, warning=FALSE}
 # ShortRead test file (has no adapter contamination)
 dirPath <- system.file(package="ShortRead", "extdata", "E-MTAB-1147")
 fls <- dir(dirPath, "fastq.gz", full=TRUE)[1]
 coll <- QACollate(QAFastqSource(fls),QAAdapterContamination())
 sr1<-benchmark(qa2(coll))
-qckit1<-benchmark(adapter_content(fls,nr=20000))
+qckit1<-benchmark(adapter_content(fls))
 
 # qckitfastq test file (has adapter contamination in most of the reads)
 infile <- system.file(package="qckitfastq", "extdata", "test.fq.gz")
 coll2 <- QACollate(QAFastqSource(infile),QAAdapterContamination())
 sr2<-benchmark(qa2(coll2))
-qckit2<-benchmark(adapter_content(infile,nr=14))
+qckit2<-benchmark(adapter_content(infile))
 
 table <- rbind(sr1, qckit1, sr2, qckit2)
+table$File <- c("E-MTAB-1147", "", "test.fq.gz", "")
 table$test <- c("ShortRead","qckitfastq","ShortRead","qckitfastq")
 colnames(table)[1] <- "Package"
-```
+format_table <- cbind(table[9], table[1:6])
 
-```{r, table, echo=FALSE}
-kable(table,caption="Benchmark results of qckitfastq, which uses RSeqAn, and ShortRead, which does not against a test file from each package.") %>%
-  group_rows('system.file(package="ShortRead", "extdata", "E-MTAB-1147")', 1, 2) %>%
-  group_rows('system.file(package="qckitfastq", "extdata", "test.fq.gz")',3,4) #%>%
+emphasize.strong.cols(1)
+pandoc.table(format_table,caption="Benchmark results of qckitfastq, which uses RSeqAn, and ShortRead, which does not against a test file from each package.")
+# %>%
+  #group_rows('system.file(package="ShortRead", "extdata", "E-MTAB-1147")', 1, 2) %>%
+  #group_rows('system.file(package="qckitfastq", "extdata", "test.fq.gz")',3,4) #%>%
   #group_rows('SRR166810_1.fastq',5,6)
 ```
 

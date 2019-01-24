@@ -39,9 +39,9 @@ matrix:
         - sudo apt-get install jq
         - pip install mkdocs==1 mkdocs-material==3.0.3
         - conda install r-knitr r-devtools
-        - R -e 'remove.packages(c("curl","httr")); install.packages(c("curl", "httr"), repos="http://cran.us.r-project.org"); Sys.setenv(CURL_CA_BUNDLE="/utils/microsoft-r-open-3.5.0/lib64/R/lib/microsoft-r-cacert.pem")'
-        - R -e 'install.packages("Rd2md", repos="http://cran.us.r-project.org")'
-        - R -e 'install.packages("Rcpp", repos="http://cran.us.r-project.org")'
+        - R -e 'remove.packages(c("curl","httr")); install.packages(c("curl", "httr"), repos="http://cran.mtu.edu"); Sys.setenv(CURL_CA_BUNDLE="/utils/microsoft-r-open-3.5.0/lib64/R/lib/microsoft-r-cacert.pem")'
+        - R -e 'install.packages("Rd2md", repos="http://cran.mtu.edu")'
+        - R -e 'install.packages("Rcpp", repos="http://cran.mtu.edu")'
         - R -e 'source("https://bioconductor.org/biocLite.R"); biocLite("BiocInstaller"); library(devtools); install_github("compbiocore/RSeqAn",build_vignettes=FALSE)'
       before_script:
         - source activate test-env
