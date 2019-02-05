@@ -22,15 +22,15 @@ Don't forget to set the C++14 compiler flags if you do this!
 
 ## Installation
 
-We recommend installing the release version [through Bioconductor](https://bioconductor.org/packages/release/bioc/html/RSeqAn.html), especially if you are running R on Windows. Instructions are provided on their page.
+ * We recommend installing the release version [through Bioconductor](https://bioconductor.org/packages/release/bioc/html/RSeqAn.html), especially if you are running R on Windows. Instructions are provided on their page.
 
-Version 1.3.1 can also be installed [through Bioconductor](http://bioconductor.org/packages/devel/bioc/html/RSeqAn.html), downloaded as [a tagged release](https://github.com/compbiocore/RSeqAn/releases/tag/v1.3.1), or installed with `devtools` by running:
+ * Version 1.3.1 can also be installed [through Bioconductor](http://bioconductor.org/packages/devel/bioc/html/RSeqAn.html), downloaded as [a tagged release](https://github.com/compbiocore/RSeqAn/releases/tag/v1.3.1), or installed with `devtools` by running:
 ```r
 devtools::install_github("compbiocore/RSeqAn", ref="v1.3.1")
 ```
 This version contains `Rcpp::as` and `Rcpp::wrap` functions for `CharString` and is the one submitted to the [Journal of Open Source Software](https://joss.theoj.org/).
 
-The development version can be installed with `devtools` by running:
+ * The development version can be installed with `devtools` by running:
 ```r
 devtools::install_github("compbiocore/RSeqAn", ref="devel")
 ```
