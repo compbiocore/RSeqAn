@@ -16,8 +16,8 @@ affiliations:
   name: Center for Computation and Visualization, Brown University, Providence, Rhode Island, United States of America
 - index: 2
   name: Center for Computational Biology of Human Disease, Brown University, Providence, Rhode Island, United States of America
-- date: 5 February 2019
-- bibliography: paper.bib
+date: 5 February 2019
+bibliography: paper.bib
 ---
 
 Summary
