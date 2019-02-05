@@ -3,7 +3,7 @@ title: 'RSeqAn: Headers and wrappers for the SeqAn library in R'
 author:
   - August Guang
 authors:
-- affiliation: 1,2
+- affiliation: "1,2"
   name: August Guang
   orcid: 0000-0003-0872-7098
 tags:
