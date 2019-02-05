@@ -16,21 +16,21 @@ affiliations:
   name: Center for Computation and Visualization, Brown University, Providence, Rhode Island, United States of America
 - index: 2
   name: Center for Computational Biology of Human Disease, Brown University, Providence, Rhode Island, United States of America
+-date: 5 February 2019
+-bibliography: paper.bib
 ---
 
 Summary
 =======
 
-`RSeqAn` provides R with access to SeqAn (Döring et al. 2008,
-Reinert et al. 2017) header files. SeqAn is an open source C++ library of
+`RSeqAn` provides R with access to SeqAn [@Doring2008; @Reinert2017] header files. SeqAn is an open source C++ library of
 efficient algorithms and data structures for the analysis of sequences
 with a focus on biological data. It has been used for many popular
-bioinformatics tools, including Bowtie2 (Langmead 2013) and Tophat
-(Trapnell, Pachter, and Salzberg 2009). Many packages in R are sped up
+bioinformatics tools, including Bowtie2 [@Langmead2013] and Tophat
+[@Trapnell2009]. Many packages in R are sped up
 with C++ code: as of [November
 2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525
-packages on CRAN, 1493 of those use Rcpp (Eddelbuettel and Balamuta
-2018). On Bioconductor (Huber et al. 2015), a repository specifically
+packages on CRAN, 1493 of those use Rcpp [@Eddelbuettel2018]. On Bioconductor [@Huber2015], a repository specifically
 for bioinformatics packages, there is a similar proportion of packages
 using Rcpp: 150 out of 1649. However, to date these packages have not
 utilized SeqAn.
@@ -59,7 +59,7 @@ Benchmarked Example
 As a proof of concept for its utility, we have benchmarked a function
 (searching for adapter contamination) from `qckitfastq`, a package that
 uses RSeqAn for quality control on bioinformatics data compared to
-`ShortRead` (Morgan et al. 2009), another package on Bioconductor
+`ShortRead` [@Morgan2009], another package on Bioconductor
 serving the same function that is purely written in R (Table 1). As can
 be seen, computing adapter content through `qckitfastq` is much faster
 than `ShortRead`.
@@ -92,35 +92,3 @@ grant number P20GM109035.
 
 References
 ==========
-
-Döring, Andreas, David Weese, Tobias Rausch, and Knut Reinert. 2008.
-“SeqAn an efficient, generic C++ library for sequence analysis.” *BMC
-Bioinformatics*. <https://doi.org/10.1186/1471-2105-9-11>.
-
-Eddelbuettel, Dirk, and James Joseph Balamuta. 2018. “Extending R with
-C++: A Brief Introduction to Rcpp.” *American Statistician*.
-<https://doi.org/10.1080/00031305.2017.1375990>.
-
-Huber, W., V. J. Carey, R. Gentleman, S. Anders, M. Carlson, B. S.
-Carvalho, H. C. Bravo, et al. 2015. “Orchestrating High-Throughput
-Genomic Analysis with Bioconductor.” *Nature Methods* 12 (2):115–21.
-<http://www.nature.com/nmeth/journal/v12/n2/full/nmeth.3252.html>.
-
-Langmead. 2013. “Bowtie2.” *Nature Methods*.
-<https://doi.org/10.1038/nmeth.1923.Fast>.
-
-Morgan, Martin, Simon Anders, Michael Lawrence, Patrick Aboyoun, Hervé
-Pagès, and Robert Gentleman. 2009. “ShortRead: A Bioconductor Package
-for Input, Quality Assessment and Exploration of High-Throughput
-Sequence Data.” *Bioinformatics* 25:2607–8.
-<https://doi.org/10.1093/bioinformatics/btp450>.
-
-Reinert, Knut, Temesgen Hailemariam Dadi, Marcel Ehrhardt, Hannes
-Hauswedell, Svenja Mehringer, René Rahn, Jongkyu Kim, et al. 2017. “The
-SeqAn C++ template library for efficient sequence analysis: A resource
-for programmers.” *Journal of Biotechnology*.
-<https://doi.org/10.1016/j.jbiotec.2017.07.017>.
-
-Trapnell, Cole, Lior Pachter, and Steven L. Salzberg. 2009. “TopHat:
-Discovering splice junctions with RNA-Seq.” *Bioinformatics*.
-<https://doi.org/10.1093/bioinformatics/btp120>.
