@@ -24,7 +24,7 @@ Don't forget to set the C++14 compiler flags if you do this!
 
  * We recommend installing the release version [through Bioconductor](https://bioconductor.org/packages/release/bioc/html/RSeqAn.html), especially if you are running R on Windows. Instructions are provided on their page.
 
- * Version 1.3.1 can also be installed [through Bioconductor](http://bioconductor.org/packages/devel/bioc/html/RSeqAn.html), downloaded as [a tagged release](https://github.com/compbiocore/RSeqAn/releases/tag/v1.3.1), or installed with `devtools` by running:
+ * Version 1.3.1 can also be installed [through Bioconductor](http://bioconductor.org/packages/devel/bioc/html/RSeqAn.html) (for now, Bioconductor has a separate release cycle), downloaded as [a tagged release](https://github.com/compbiocore/RSeqAn/releases/tag/v1.3.1), or installed with `devtools` by running:
 ```r
 devtools::install_github("compbiocore/RSeqAn", ref="v1.3.1")
 ```
