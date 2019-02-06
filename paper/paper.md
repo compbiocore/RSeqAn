@@ -26,7 +26,7 @@ Summary
 `RSeqAn` provides R with access to SeqAn [@Doring2008; @Reinert2017] header files. SeqAn is an open source C++ library of
 efficient algorithms and data structures for the analysis of sequences
 with a focus on biological data. It has been used for many popular
-bioinformatics tools, including Bowtie2 [@Langmead2013] and Tophat
+bioinformatics tools, including Bowtie2 [@Langmead2012] and Tophat
 [@Trapnell2009]. Many packages in R are sped up
 with C++ code: as of [November
 2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525
