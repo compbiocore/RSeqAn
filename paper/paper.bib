@@ -80,6 +80,16 @@ title = {{The SeqAn C++ template library for efficient sequence analysis: A reso
 year = {2017}
 }
 
+@article{Sridharan2015,
+abstract = {R is a popular data analysis language, but there is scant experimental data characterizing the run-time profile of R programs. This paper addresses this limitation by system-atically cataloging where time is spent when running R pro-grams. Our evaluation using four different workloads shows that when analyzing large datasets, R programs a) spend more than 85{\%} of their time in processor stalls, which leads to slower execution times, b) trigger the garbage collector frequently, which leads to higher memory stalls, and c) cre-ate a large number of unnecessary temporary objects that causes R to swap to disk quickly even for datasets that are far smaller than the available main memory. Addressing these issues should allow R programs to run faster than they do today, and allow R to be used for analyzing even larger datasets. As outlined in this paper, the results presented in this paper motivate a number of future research inves-tigations in the database, architecture, and programming language communities. All data and code that is used in this paper (which includes the R programs, and changes to the R source code for instrumentation) can be found at:},
+author = {Sridharan, Shriram},
+doi = {10.14778/2735471.2735478},
+issn = {21508097},
+journal = {Proceedings of the VLDB Endowment},
+title = {{Profiling R on a Contemporary Processor}},
+year = {2015}
+}
+
 @article{Trapnell2009,
 abstract = {MOTIVATION: A new protocol for sequencing the messenger RNA in a cell, known as RNA-Seq, generates millions of short sequence fragments in a single run. These fragments, or 'reads', can be used to measure levels of gene expression and to identify novel splice variants of genes. However, current software for aligning RNA-Seq data to a genome relies on known splice junctions and cannot identify novel ones. TopHat is an efficient read-mapping algorithm designed to align reads from an RNA-Seq experiment to a reference genome without relying on known splice sites.$\backslash$n$\backslash$nRESULTS: We mapped the RNA-Seq reads from a recent mammalian RNA-Seq experiment and recovered more than 72{\%} of the splice junctions reported by the annotation-based software from that study, along with nearly 20,000 previously unreported junctions. The TopHat pipeline is much faster than previous systems, mapping nearly 2.2 million reads per CPU hour, which is sufficient to process an entire RNA-Seq experiment in less than a day on a standard desktop computer. We describe several challenges unique to ab initio splice site discovery from RNA-Seq reads that will require further algorithm development.$\backslash$n$\backslash$nAVAILABILITY: TopHat is free, open-source software available from http://tophat.cbcb.umd.edu.$\backslash$n$\backslash$nSUPPLEMENTARY INFORMATION: Supplementary data are available at Bioinformatics online.},
 archivePrefix = {arXiv},

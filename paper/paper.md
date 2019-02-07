@@ -23,22 +23,14 @@ bibliography: paper.bib
 Summary
 =======
 
-`RSeqAn` provides R with access to SeqAn [@Doring2008; @Reinert2017] header files and provides wrappers around SeqAn data types. SeqAn is an open source C++ library of
-efficient algorithms and data structures for the analysis of sequences
-with a focus on biological data. Its
-capabilities include efficient storage and I/O of sequence data, fast algorithms for pattern matching, and much more. It has been used for many popular bioinformatics tools, including Bowtie2 [@Langmead2012] and Tophat
-[@Trapnell2009]. A researcher using `RSeqAn` will be able to take advantage of all the capabilities of `SeqAn` and improve their code performance significantly without having to go through the trouble of installing the library or dealing with interfacing between R and C++ data types themselves.
+R is used heavily in the bioinformatics community for processing, analyzing, and visualizing biological sequence data due to the strong support for data exploration and analysis. One common complaint about R is its lack of speed relative to other languages, which have to do with properties of the R kernel [@Sridharan2015]. A solution to this is to rewrite key functions in C++ instead, then use Rcpp [@Eddelbuettel2018] to interface with R. Many packages in R are sped up with C++ code: as of [November
+2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525 packages on CRAN, 1493 of those use Rcpp. On Bioconductor [@Huber2015], a repository specifically for bioinformatics packages, there is a similar proportion of packages using Rcpp: 150 out of 1649.
 
-Many packages in R are sped up with C++ code: as of [November
-2018](http://dirk.eddelbuettel.com/blog/2018/11/07/), out of 13525
-packages on CRAN, 1493 of those use Rcpp [@Eddelbuettel2018]. On Bioconductor [@Huber2015], a repository specifically for bioinformatics packages, there is a similar proportion of packages using Rcpp: 150 out of 1649. However, to date these packages have not utilized SeqAn.
+Writing certain functions in C++ also allows the researcher to take advantage of high-performance C++ libraries. One such library that has proven powerful and popular for bioinformatics applications is SeqAn [@Doring2008; @Reinert2017]. SeqAn is an open source C++ library of efficient algorithms and data structures for the analysis of sequences with a focus on biological data. It has been used for many popular bioinformatics tools, including Bowtie2 [@Langmead2012] and Tophat [@Trapnell2009]. Its capabilities include efficient storage and I/O of sequence data, fast algorithms for pattern matching, and much more.
 
-An R package that does aim to use SeqAn runs into two issues. First, R for Windows is built with the mingw compiler, which the SeqAn
-development team does not offer support for. Second, SeqAn implements several custom data types in order to make the library more efficient. This means that any data type in SeqAn needs to have have R to C++ conversion and C++ to R conversion functions written for it before it can be used in R.
+To date, no R package has taken advantage of SeqAn. This is due to two issues. First, R for Windows is built with the mingw compiler, which the SeqAn development team does not offer support for. Second, SeqAn implements several custom data types in order to make the library more efficient. This means that any data type in SeqAn needs to have have R to C++ conversion and C++ to R conversion functions written for it before it can be used in R.
 
-In `RSeqAn` v1.3.1 we provide access to SeqAn header files, add support for mingw so that it can be used in R for Windows, and provide some wrappers to convert between R objects and SeqAn data types. The development version includes more wrappers, with a goal of eventually providing all necessary wrappers for easy interface with SeqAn. `RSeqAn` thus provides an easy way to write R bioinformatics packages that are much more efficient without need for the user to install SeqAn themselves. `RSeqAn` can be installed from Bioconductor, and documentation for it
-can be found in the package as well as
-[online](https://compbiocore.github.io/RSeqAn/).
+`RSeqAn` solves both of these problems, thus allowing any R researcher to use the capabilities of SeqAn in their own work without need for the user to install SeqAn themselves or deal with interfacing between R and C++. `RSeqAn` can be installed from Bioconductor, and documentation for it can be found in the package as well as [online](https://compbiocore.github.io/RSeqAn/).
 
 Benchmarked Example
 -------------------
