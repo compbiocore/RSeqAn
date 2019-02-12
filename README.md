@@ -2,6 +2,8 @@
 SeqAn Headers for R
 
 [![Build Status](https://travis-ci.org/compbiocore/RSeqAn.svg?branch=master)](https://travis-ci.org/compbiocore/RSeqAn) [![codecov](https://codecov.io/gh/compbiocore/RSeqAn/branch/master/graph/badge.svg)](https://codecov.io/gh/compbiocore/RSeqAn) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![Docs](https://img.shields.io/badge/docs-stable-steelblue.svg?style=flat-square)](https://compbiocore.github.io/RSeqAn)
+[![DOI](http://joss.theoj.org/papers/10.21105/joss.01160/status.svg)](https://doi.org/10.21105/joss.01160)
 
 ## Overview
 
@@ -46,7 +48,10 @@ See [`NEWS`](/inst/NEWS) for release history.
 
 ## Citation
 
-To cite this package from within R, enter `citation("RSeqAn")`. Citation is also provided below:
-	Guang A (2018). *RSeqAn: R SeqAn.* R package version 1.3.1.
+If you use this package in your work, even if only in auxiliary tools or pipelines please cite:
 
-Please do not forget to cite SeqAn if you use this package in your acedemic work, even if only in auxiliary tools or pipelines: https://doi.org/10.1016/j.jbiotec.2017.07.017
+Guang, (2019). RSeqAn: Headers and wrappers for the SeqAn library in R. Journal of Open Source Software, 4(34), 1160, https://doi.org/10.21105/joss.01160
+
+Please do not forget to cite SeqAn as well:
+
+Reinert, K., Dadi, T. H., Ehrhardt, M., Hauswedell, H., Mehringer, S., Rahn, R., … Weese, D. (2017). The SeqAn C++ template library for efficient sequence analysis: A resource for programmers. Journal of Biotechnology. https://doi.org/10.1016/j.jbiotec.2017.07.017
