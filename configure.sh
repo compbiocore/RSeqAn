@@ -11,7 +11,7 @@
 
 if [[ "${CI}" == "true" ]]; then
     if [[ "${TRAVIS}" == "true" ]]; then 
-        echo "** Overriding DESCRIPTION and removing C++14 on Travis only"
-        sed -i '/SystemRequirements: C++14/d' DESCRIPTION
+        echo "** Overriding src/Makevars and removing C++14 on Travis only"
+        sed -i '/CXX_STD = CXX14/d' src/Makevars
     fi
 fi

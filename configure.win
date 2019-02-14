@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -r src
+rm -r man
+rm -r R
+rm NAMESPACE
+echo 'exportPattern(".")' > NAMESPACE
+sed -i '9,10d' DESCRIPTION
+sed -i '$d' DESCRIPTION
