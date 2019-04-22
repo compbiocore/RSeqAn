@@ -3,6 +3,7 @@ site_author:      August Guang
 repo_url:         https://github.com/compbiocore/RSeqAn
 site_description: Documentation for Bioconductor package RSeqAn.
 site_url: https://compbiocore.github.io/RSeqAn #this is the main site!
+google_analytics: ['UA-115983496-2', 'compbiocore.github.io']
 
 theme:
   name: material
