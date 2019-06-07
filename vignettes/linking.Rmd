@@ -1,0 +1,115 @@
+---
+title: "Linking to and configuring RSeqAn"
+author: "August Guang"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Linking to and configuring RSeqAn}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+The reason [`RSeqAn`](https://bioconductor.org/packages/release/bioc/html/RSeqAn.html) was created was to allow for easy integration of the
+SeqAn biological sequence analysis C++ library into R packages. This vignette describes how to link to [`RSeqAn`](https://bioconductor.org/packages/release/bioc/html/RSeqAn.html)
+from another R package as well as how to configure RSeqAn for your own build system such as enabling `zlib` or `bzip2`.
+
+## Linking
+
+### Dependencies for linking
+
+Prerequisites for linking to `RSeqAn` are:
+
+ * Compiler needs to support C++14 standard. This is the default standard [from GCC6 on](https://en.wikipedia.org/wiki/C%2B%2B14#Compiler_support). You need to tell the build system to use C++14, either by modifying the `SystemRequirements` field of the `DESCRIPTION` file:
+ ```
+ SystemRequirements: C++14
+ ```
+ or (preferred) by specifying it in `src/Makevars`:
+ ```
+ CXX_STD = CXX14
+ ```
+ * [`Rcpp`](https://cran.r-project.org/package=Rcpp) needs to be installed and imported inside the `DESCRIPTION` file:
+ ```
+ Imports: Rcpp
+ ```
+ as well as specified in the `NAMESPACE` file:
+ ```
+ importFrom(Rcpp, sourceCpp)
+ ```
+ Note: If you generate your `NAMESPACE` with [`roxygen2`](https://cran.r-project.org/web/packages/roxygen2/index.html) then don't worry about the `NAMESPACE` file.
+ 
+### Linking to RSeqAn
+
+As long as the prerequisites are satisfied, then linking to `RSeqAn` is simple. Just put `RSeqAn` into the `Imports` field of the `DESCRIPTION` file as well, and then put
+```
+LinkingTo: Rcpp, RSeqAn
+```
+also in the `DESCRIPTION` file.
+
+In C or C++ code, use `#include <seqan/$filename.h>` as usual, as well as `// [[Rcpp::depends(RSeqAn)]]` [as usual](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-attributes.pdf). For an example, you can look at the [`qckitfastq`](https://bioconductor.org/packages/release/bioc/html/qckitfastq.html) package [source code](https://github.com/compbiocore/qckitfastq).
+
+## Configuring RSeqAn
+
+By default `SeqAn` and thus `RSeqAn` are not set up to make use of libraries like `zlib` and `bzip2` although it has the capabilities. In order to enable and set options for these libraries (assuming the libraries are installed), preprocessor flags for it should be set in `src/Makevars` (preferred) or using `Sys.setenv()`. As an example for enabling `zlib`:
+
+ * In `src/Makevars`, write:
+ ```
+ PKG_CXXFLAGS=-DSEQAN_HAS_ZLIB
+ ```
+ * Using `Sys.setenv()`:
+ ```
+ Sys.setenv("PKG_CXXFLAGS"="-DSEQAN_HAS_ZLIB")
+ ```
+
+You can see other preprocessor defines that can be set at the [SeqAn documentation](https://seqan.readthedocs.io/en/master/Infrastructure/Use/CustomBuildSystem.html#preprocessor-defines-affecting-seqan).
+
+### Example script
+
+An example script using `Sys.setenv()` to set preprocessor defines that follows the SeqAn [SAM and BAM I/O tutorial](https://seqan.readthedocs.io/en/seqan-v2.0.2/Tutorial/SamAndBamIO.html) is below:
+
+```{r setup}
+Sys.setenv("PKG_CXXFLAGS"="-DSEQAN_HAS_ZLIB -std=c++14")
+```
+
+```{r bamio, engine='Rcpp'}
+// [[Rcpp::depends(RSeqAn)]]
+
+#include <seqan/bam_io.h>
+#include <Rcpp.h>
+
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+int main()
+{
+    // test.bam is in vignettes folder
+    seqan::CharString bamFileName = "toy.bam";
+
+    // Open input file, BamFileIn can read SAM and BAM files.
+    seqan::BamFileIn bamFileIn(toCString(bamFileName));
+
+    // Open output file, BamFileOut accepts also an ostream and a format tag.
+    // Note the usage of Rcout instead of std::cout
+    seqan::BamFileOut bamFileOut(context(bamFileIn), Rcout, seqan::Sam());
+    
+    // Copy header.
+    seqan::BamHeader header;
+    seqan::readHeader(header, bamFileIn);
+    seqan::writeHeader(bamFileOut, header);
+    
+    // Copy records.
+    seqan::BamAlignmentRecord record;
+    while (!atEnd(bamFileIn))
+    {
+        seqan::readRecord(record, bamFileIn);
+        seqan::writeRecord(bamFileOut, record);
+    }
+
+    return 0;
+}
+```
+
+```{r main}
+main()
+```
