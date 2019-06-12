@@ -81,7 +81,7 @@ Sys.setenv("PKG_CXXFLAGS"="-DSEQAN_HAS_ZLIB -std=c++14")
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-int main()
+int readBam()
 {
     // test.bam is in vignettes folder
     seqan::CharString bamFileName = "toy.bam";
@@ -111,5 +111,5 @@ int main()
 ```
 
 ```{r main}
-main()
+readBam()
 ```
