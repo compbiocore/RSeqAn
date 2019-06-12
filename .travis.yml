@@ -5,6 +5,8 @@ matrix:
       r: bioc-release
       cache: packages
       os: linux
+      r_build_args: '--no-build-vignettes'
+      r_check_args: '--ignore-vignettes'
       addons:
         apt:
           packages:
