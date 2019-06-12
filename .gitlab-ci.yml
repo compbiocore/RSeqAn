@@ -1,6 +1,7 @@
 image: bioconductor/devel_core2
 test:
   script:
-    - R CMD build .
+    - R -e 'install.packages("testthat", repos="http://cran.mtu.edu")'
+    - R CMD build . --no-build-vignettes
     - R CMD check *tar.gz --no-build-vignettes
     - R CMD BiocCheck *tar.gz
