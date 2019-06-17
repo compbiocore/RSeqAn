@@ -47,7 +47,8 @@ matrix:
         - R -e 'remove.packages(c("curl","httr")); install.packages(c("curl", "httr"), repos="http://cran.mtu.edu"); Sys.setenv(CURL_CA_BUNDLE="/utils/microsoft-r-open-3.5.0/lib64/R/lib/microsoft-r-cacert.pem")'
         - R -e 'install.packages("Rd2md", repos="http://cran.mtu.edu")'
         - R -e 'install.packages("Rcpp", repos="http://cran.mtu.edu")'
-        - R -e 'install.packages("BiocManager", repos="htpp://cran.mtu.edu")'
+        #- R -e 'install.packages("BiocManager", repos="htpp://cran.mtu.edu")' r-base is still 3.5.1 for now
+        - R -e 'source("https://bioconductor.org/biocLite.R"); biocLite("BiocInstaller");'
         - R -e 'library(devtools); install_github("compbiocore/RSeqAn",build_vignettes=FALSE)'
       before_script:
         - source activate test-env
