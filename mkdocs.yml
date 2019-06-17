@@ -25,4 +25,5 @@ markdown_extensions:
 
 nav:
   - Home: 'index.md'
-  - Vignette: 'first_example.md'
+  - Introduction to using RSeqAn: 'first_example.md'
+  - Linking to and configuring RSeqAn: 'linking.md'

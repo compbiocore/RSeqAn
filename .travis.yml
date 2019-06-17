@@ -8,28 +8,12 @@ matrix:
       os: linux
       r_build_args: '--no-build-vignettes'
       r_check_args: '--ignore-vignettes'
-      addons:
-        apt:
-          packages:
-            - g++-6
-          sources:
-            - ubuntu-toolchain-r-test
-      env:
-        - MATRIX_EVAL="CXX=g++-6 && CC=gcc-6"
-      before_install:
-        - eval "${MATRIX_EVAL}"
-        - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-        - gcc --version
-        - g++ --version
-        # from https://travis-ci.org/stan-dev/rstantools
-        - mkdir -p ~/.R
-        - echo "CXX14FLAGS = -O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function -Wno-unused-local-typedefs -Wno-ignored-attributes -Wno-macro-redefined" >> ~/.R/Makevars
-        - echo "CXX14 = g++-6 -std=c++1y -fPIC" >> ~/.R/Makevars
       r_packages:
         - covr
       after_success:
         - Rscript -e 'library(covr); codecov()'
     - stage: deploy # this block builds and deploys the docs, it's in Python.
+      if: branch = master OR branch = devel
       language: python
       install:
         - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
