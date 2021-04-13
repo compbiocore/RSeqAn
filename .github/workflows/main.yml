@@ -67,6 +67,26 @@ jobs:
         with:
           miniconda-version: "latest"
           activate-environment: foo
+      - name: install
+        run:
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+          bash miniconda.sh -b -p $HOME/miniconda
+          export PATH="$HOME/miniconda/bin:$PATH"
+          hash -r
+          conda config --set always_yes yes --set changeps1 no
+          conda update -q conda
+          conda info -a
+          conda create -q -n test-env python=$TRAVIS_PYTHON_VERSION
+          source activate test-env
+          sudo apt-get install jq
+          pip install mkdocs==1 mkdocs-material==3.0.3
+          conda install r-knitr r-devtools
+          R -e 'remove.packages(c("curl","httr")); install.packages(c("curl", "httr"), repos="http://cran.mtu.edu"); Sys.setenv(CURL_CA_BUNDLE="/utils/microsoft-r-open-3.5.0/lib64/R/lib/microsoft-r-cacert.pem")'
+          R -e 'install.packages("Rd2md", repos="http://cran.mtu.edu")'
+          R -e 'install.packages("Rcpp", repos="http://cran.mtu.edu")'
+        #- R -e 'install.packages("BiocManager", repos="htpp://cran.mtu.edu")' r-base is still 3.5.1 for now
+          R -e 'source("https://bioconductor.org/biocLite.R"); biocLite("BiocInstaller");'
+          R -e 'library(devtools); install_github("compbiocore/RSeqAn",build_vignettes=FALSE)'
       - name: Bash
         shell: bash -l {0}
         run: |
